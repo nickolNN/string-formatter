@@ -1,17 +1,27 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <el-button v-if="!dataFormatted" @click="loadDataFromFile" :loading="dataProcessing">
+      Format data
+    </el-button>
+    <el-button v-else @click="resetFormatting">Reset formatting</el-button>
+    <preview />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import { mapActions, mapGetters } from 'vuex';
+import Preview from '@/components/Preview.vue';
 
 export default {
   name: 'app',
   components: {
-    HelloWorld,
+    Preview,
+  },
+  methods: {
+    ...mapActions(['loadDataFromFile', 'resetFormatting']),
+  },
+  computed: {
+    ...mapGetters(['dataProcessing', 'dataFormatted']),
   },
 };
 </script>

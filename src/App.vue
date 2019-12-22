@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <el-button v-if="!dataFormatted" @click="loadDataFromFile" :loading="dataProcessing">
+    <el-button v-if="!dataFormatted" @click="formatData" :loading="dataProcessing">
       Format data
     </el-button>
     <el-button v-else @click="resetFormatting">Reset formatting</el-button>
@@ -18,7 +18,7 @@ export default {
     Preview,
   },
   methods: {
-    ...mapActions(['loadDataFromFile', 'resetFormatting']),
+    ...mapActions(['formatData', 'resetFormatting']),
   },
   computed: {
     ...mapGetters(['dataProcessing', 'dataFormatted']),

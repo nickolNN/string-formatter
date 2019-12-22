@@ -12,17 +12,13 @@ const formatPlanName = inputString => capitalizeString(inputString);
 
 const formatSponsorName = inputString => capitalizeString(inputString);
 
-const format = rawData => new Promise((resolve, reject) => {
-  try {
-    const res = rawData.map(item => ({
-      ackId: item.ACK_ID,
-      planName: formatPlanName(item.PLAN_NAME),
-      sponsorDfeName: formatSponsorName(item.SPONSOR_DFE_NAME),
-    }));
-    resolve(res);
-  } catch (error) {
-    reject(error);
-  }
+const format = rawData => new Promise((resolve) => {
+  const formatted = rawData.map(item => ({
+    ackId: item.ackId,
+    planName: formatPlanName(item.planName),
+    sponsorDfeName: formatSponsorName(item.sponsorDfeName),
+  }));
+  resolve(formatted);
 });
 
 export default { format };

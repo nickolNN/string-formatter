@@ -4,20 +4,22 @@ import formatter from '@/plugins/formatter';
 
 const json = require('../assets/data.json');
 
+const linesAdapted = json.map(item => ({
+  ackId: item.ACK_ID,
+  planName: item.PLAN_NAME,
+  sponsorDfeName: item.SPONSOR_DFE_NAME,
+}));
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    source: json.map(item => ({
-      ackId: item.ACK_ID,
-      planName: item.PLAN_NAME,
-      sponsorDfeName: item.SPONSOR_DFE_NAME,
-    })),
+    source: linesAdapted,
     adaptedData: null,
     processing: false,
   },
   getters: {
-    dataToShow: state => state.adaptedData,
+    dataToShow: state => state.adaptedData || state.source,
     dataFormatted: state => !!state.adaptedData,
     dataProcessing: state => state.processing,
   },
@@ -30,10 +32,10 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    loadDataFromFile: ({ commit, state }) => new Promise((resolve, reject) => {
+    formatData: ({ commit }) => new Promise((resolve, reject) => {
       commit('setProcessingStatus', true);
       commit('setAdaptedData', null);
-      formatter.format(state.source).then(
+      formatter.format(linesAdapted).then(
         (data) => {
           commit('setAdaptedData', data);
           resolve();

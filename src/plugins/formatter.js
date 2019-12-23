@@ -23,7 +23,7 @@ const prepositions = [
 ];
 
 const toLowerCase = new RegExp(`\\s(${prepositions.join('|')})\\s`, 'gi');
-const toUpperCase = new RegExp('\\s(dba|aaa|ai|usa|fcu|it|ny|tr|or)\\s?|\\s?(llc)\\s?|(\\s[a-z])|(^[a-z])|([\'./& -]\\s?[a-z])', 'gi');
+const toUpperCase = new RegExp('\\s(dba|aaa|ai|usa|fcu|it|ny|tr|or|i|ii|iii|iv|v|vi|vii|viii|ix|x)\\s?|\\s?(llc)\\s?|(\\s[a-z])|(^[a-z])|([\'./& -]\\s?[a-z])', 'gi');
 
 const formatString = inputString => inputString
   .toString()

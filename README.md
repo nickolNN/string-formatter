@@ -1,5 +1,7 @@
 # string-formatter
 
+Sample script which parses the data from the file and performs string formatting/output.
+
 ## Project setup
 ```
 npm install
